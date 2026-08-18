@@ -18,16 +18,4 @@ class AppCommands extends Notifier<AppState> {
       authState: authState,
     );
   }
-
-  void login() {
-    state = state.copyWith(
-      authState: AuthState.loggedIn(),
-    );
-  }
-
-  void logout() {
-    state = state.copyWith(
-      authState: AuthState.loggedOut(),
-    );
-  }
 }
