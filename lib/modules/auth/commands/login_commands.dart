@@ -1,6 +1,7 @@
 import 'package:river_blog/core/base/base_commands.dart';
 import 'package:river_blog/modules/auth/states/login_form_state.dart';
 import 'package:river_blog/modules/auth/validators/login_validator.dart';
+import 'package:river_blog/shared/providers.dart';
 
 class LoginCommands extends BaseCommands<LoginFormState> {
   @override
@@ -17,8 +18,8 @@ class LoginCommands extends BaseCommands<LoginFormState> {
   }
 
   Future<void> onSubmit() async {
-    final login = state.login;
-    final password = state.password;
+    final String login = state.login;
+    final String password = state.password;
 
     final LoginValidator validator = LoginValidator(
       login: login,
@@ -27,9 +28,6 @@ class LoginCommands extends BaseCommands<LoginFormState> {
 
     state = state.copyWith(
       loginError: validator.validateLogin(),
-    );
-
-    state = state.copyWith(
       passwordError: validator.validatePassword(),
     );
 
@@ -53,8 +51,15 @@ class LoginCommands extends BaseCommands<LoginFormState> {
 
       describe('Обрабатываю полученные данные');
 
-      if (login == 'admin' && password == '1234') {
-        return;
+      if (
+        login == 'admin'
+        && password == '1234'
+      ) {
+        ref.read(userFacadeProvider)
+          .login(
+            login: login,
+            password: password
+          );
       }
     });
   }

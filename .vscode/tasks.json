@@ -1,0 +1,61 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "📦 Сортировочка импортов",
+            "type": "shell",
+            "command": "flutter",
+            "args": [
+                "pub",
+                "run",
+                "import_sorter:main",
+                "lib/*",
+            ],
+            "problemMatcher": [],
+            "detail": "Сортируем импорты во всех файликов"
+        },
+        {
+            "label": "🛠️ Починить все что чинится",
+            "type": "shell",
+            "command": "dart",
+            "args": [
+                "fix",
+                "--apply",
+            ],
+            "problemMatcher": [],
+            "detail": "Автоматический фикс проблемсов"
+        },
+        {
+            "label": "🧹 Flutter clean + pub get",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "-c",
+                "flutter clean && flutter pub get"
+            ],
+            "problemMatcher": [],
+            "detail": "Полная очистка Flutter и установка зависимостей"
+        },
+        {
+            "label": "🍎 iOS nuclear reset (Pods, cache, reinstall)",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+              "-c",
+              "cd ios && rm -rf Pods Podfile.lock && pod cache clean --all && pod install && cd .."
+            ],
+            "problemMatcher": [],
+            "detail": "Удаляет Pods, чистит CocoaPods cache и переустанавливает всё"
+        },
+        {
+            "label": "☢️ ПОЛНЫЙ ЯДЕРНЫЙ СБРОС iOS + Flutter",
+            "type": "shell",
+            "dependsOn": [
+              "🧹 Flutter clean + pub get",
+              "🍎 iOS nuclear reset (Pods, cache, reinstall)"
+            ],
+            "problemMatcher": [],
+            "detail": "Когда Xcode решил поиграть в сука-пидора"
+        },
+    ]
+}

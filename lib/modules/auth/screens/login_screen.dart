@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:river_blog/modules/auth/commands/login_commands.dart';
-import 'package:river_blog/modules/auth/states/login_form_state.dart';
 
-final NotifierProvider<LoginCommands, LoginFormState> _commandsProvider = NotifierProvider.autoDispose<LoginCommands, LoginFormState>(LoginCommands.new);
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'package:river_blog/modules/auth/commands/login_commands.dart';
+import 'package:river_blog/modules/auth/providers.dart';
+import 'package:river_blog/modules/auth/states/login_form_state.dart';
 
 class LoginScreen extends ConsumerWidget {
   const new({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final LoginCommands commands = ref.read(loginCommandsProvider.notifier);
+    final LoginFormState state = ref.watch(loginCommandsProvider);
+
     return Scaffold(
       appBar: AppBar(title: const Text('Авторизация')),
       body: SafeArea(
@@ -25,10 +29,9 @@ class LoginScreen extends ConsumerWidget {
                 decoration: InputDecoration(
                   labelText: 'Логин',
                   border: const UnderlineInputBorder(),
-                  errorText: ref.watch(_commandsProvider).loginError,
+                  errorText: state.loginError,
                 ),
-                onChanged: (String value) => ref.read(_commandsProvider.notifier)
-                  .onLoginChanged(value),
+                onChanged: (String value) => commands.onLoginChanged(value),
               ),
               TextField(
                 obscureText: true,
@@ -36,16 +39,13 @@ class LoginScreen extends ConsumerWidget {
                 decoration: InputDecoration(
                   labelText: 'Пароль',
                   border: const UnderlineInputBorder(),
-                  errorText: ref.watch(_commandsProvider).passwordError,
+                  errorText: state.passwordError,
                 ),
-                onChanged: (String value) => ref.read(_commandsProvider.notifier)
-                  .onPasswordChanged(value),
-                onSubmitted: (String? value) {
-                  ref.read(_commandsProvider.notifier).onSubmit();
-                },
+                onChanged: (String value) => commands.onPasswordChanged(value),
+                onSubmitted: (String? value) => commands.onSubmit(),
               ),
               ElevatedButton(
-                onPressed: () => ref.read(_commandsProvider.notifier).onSubmit(),
+                onPressed: () => commands.onSubmit(),
                 child: const Text('Войти'),
               ),
             ],
