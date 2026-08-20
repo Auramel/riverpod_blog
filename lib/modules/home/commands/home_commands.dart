@@ -5,7 +5,7 @@ import 'package:river_blog/shared/providers.dart';
 class HomeCommands extends BaseCommands<EmptyState> {
   @override
   EmptyState build() {
-    return EmptyState();
+    return const EmptyState();
   }
 
   Future<void> logout() async {

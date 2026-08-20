@@ -5,7 +5,7 @@ import 'package:river_blog/facades/device_storage_facade.dart';
 import 'package:river_blog/facades/user_facade.dart';
 
 final Provider<EventBus> eventBusProvider = Provider<EventBus>(
-  (Ref ref) => throw UnimplementedError('eventBusProvider must be overridden'),
+  (Ref ref) => throw UnimplementedError(),
 );
 
 final Provider<DeviceStorageFacade> deviceStorageFacadeProvider = Provider<DeviceStorageFacade>(

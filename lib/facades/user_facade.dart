@@ -24,13 +24,13 @@ class UserFacade {
     await storage.setLogin(login);
     await storage.setPassword(password);
 
-    eventBus.fire(UserLoggedInEvent());
+    eventBus.fire(const UserLoggedInEvent());
   }
 
   Future<void> logout() async {
     await storage.setLogin(null);
     await storage.setPassword(null);
 
-    eventBus.fire(UserLoggedOutEvent());
+    eventBus.fire(const UserLoggedOutEvent());
   }
 }

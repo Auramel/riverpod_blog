@@ -46,10 +46,10 @@ class AuthRouter extends BaseRouter {
   }
 
   void _onUserLoggedIn(UserLoggedInEvent event) {
-    router.go(Routes.home);
+    router.replace(Routes.home);
   }
 
   void _onUserLoggedOut(UserLoggedOutEvent event) {
-    router.go(Routes.login);
+    router.replace(Routes.login);
   }
 }
