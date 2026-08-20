@@ -6,27 +6,60 @@ abstract class _Keys {
 }
 
 class DeviceStorageFacade {
-  final SharedPreferences prefs;
+  final SharedPreferences _prefs;
 
-  DeviceStorageFacade(this.prefs);
+  DeviceStorageFacade(this._prefs);
 
-  String? getLogin() =>  prefs.getString(_Keys.login);
+  String? getLogin() =>  _prefs.getString(_Keys.login);
   Future<void> setLogin(String? value) async {
-    if (value == null) {
-      await prefs.remove(_Keys.login);
-      return;
-    }
-
-    await prefs.setString(_Keys.login, value);
+    await _setValue(
+      key: _Keys.login,
+      value: value,
+    );
   }
 
-  String? getPassword() => prefs.getString(_Keys.password);
+  String? getPassword() => _prefs.getString(_Keys.password);
   Future<void> setPassword(String? value) async {
+    await _setValue(
+      key: _Keys.password,
+      value: value,
+    );
+  }
+
+  Future<void> _setValue({
+    required String key,
+    required Object? value,
+  }) async {
     if (value == null) {
-      await prefs.remove(_Keys.password);
+      await _prefs.remove(key);
       return;
     }
 
-    await prefs.setString(_Keys.password, value);
+    if (value is int) {
+      await _prefs.setInt(key, value);
+      return;
+    }
+
+    if (value is double) {
+      await _prefs.setDouble(key, value);
+      return;
+    }
+
+    if (value is String) {
+      await _prefs.setString(key, value);
+      return;
+    }
+
+    if (value is bool) {
+      await _prefs.setBool(key, value);
+      return;
+    }
+
+    if (value is List<String>) {
+      await _prefs.setStringList(key, value);
+      return;
+    }
+
+    throw UnsupportedError('Unsupported device storage value type: ${value.runtimeType}');
   }
 }
