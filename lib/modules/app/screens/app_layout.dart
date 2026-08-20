@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:river_blog/core/ui/loading.dart';
 import 'package:river_blog/modules/app/providers.dart';
+import 'package:river_blog/modules/app/widgets/loading/loading_widget.dart';
 
 class AppLayout extends ConsumerWidget {
   const new({super.key});
@@ -17,7 +17,7 @@ class AppLayout extends ConsumerWidget {
 
     return MaterialApp.router(
       routerConfig: router,
-      builder: (BuildContext context, Widget? child) => LoadingHost(
+      builder: (BuildContext context, Widget? child) => LoadingWidget(
         child: child ?? const SizedBox.shrink(),
       ),
     );

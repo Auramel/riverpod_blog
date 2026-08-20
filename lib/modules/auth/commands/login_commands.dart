@@ -1,4 +1,5 @@
 import 'package:river_blog/core/base/base_commands.dart';
+import 'package:river_blog/modules/app/services/operation_runner.dart';
 import 'package:river_blog/modules/auth/states/login_form_state.dart';
 import 'package:river_blog/modules/auth/validators/login_validator.dart';
 import 'package:river_blog/shared/providers.dart';
@@ -35,32 +36,33 @@ class LoginCommands extends BaseCommands<LoginFormState> {
       return;
     }
 
-    await loading((Function(String) describe) async {
-      if (!ref.mounted) {
-        return;
-      }
+    await ref.read(operationRunnerProvider)
+      .run((Function(String) describe) async {
+        if (!ref.mounted) {
+          return;
+        }
 
-      state = state.copyWithoutErrors();
+        state = state.copyWithoutErrors();
 
-      describe('Отправляю запрос на сервер');
-      await Future<void>.delayed(const Duration(seconds: 3));
+        describe('Отправляю запрос на сервер');
+        await Future<void>.delayed(const Duration(seconds: 3));
 
-      if (!ref.mounted) {
-        return;
-      }
+        if (!ref.mounted) {
+          return;
+        }
 
-      describe('Обрабатываю полученные данные');
+        describe('Обрабатываю полученные данные');
 
-      if (
-        login == 'admin'
-        && password == '1234'
-      ) {
-        await ref.read(userFacadeProvider)
-          .login(
-            login: login,
-            password: password
-          );
-      }
-    });
+        if (
+          login == 'admin'
+          && password == '1234'
+        ) {
+          await ref.read(userFacadeProvider)
+            .login(
+              login: login,
+              password: password
+            );
+        }
+      });
   }
 }

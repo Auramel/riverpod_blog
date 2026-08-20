@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:river_blog/core/base/base_events.dart';
 import 'package:river_blog/core/base/base_router.dart';
 import 'package:river_blog/core/configs/routes.dart';
-import 'package:river_blog/modules/app/events/auth_event.dart';
+import 'package:river_blog/modules/app/events/auth_events.dart';
 
 class AuthRouter extends BaseRouter {
   final EventBus eventBus;
