@@ -1,7 +1,7 @@
 import 'package:event_bus/event_bus.dart';
 
-import 'package:river_blog/core/events/auth_event.dart';
 import 'package:river_blog/facades/device_storage_facade.dart';
+import 'package:river_blog/modules/app/events/auth_event.dart';
 
 class UserFacade {
   final DeviceStorageFacade storage;

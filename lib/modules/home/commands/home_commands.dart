@@ -9,7 +9,7 @@ class HomeCommands extends BaseCommands<EmptyState> {
   }
 
   Future<void> logout() async {
-    await ref.read(userFacadeProvider)
+    await ref.watch(userFacadeProvider)
       .logout();
   }
 }

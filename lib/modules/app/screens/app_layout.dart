@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:river_blog/core/ui/loading.dart';
-import 'package:river_blog/modules/app/router/router.dart';
+import 'package:river_blog/modules/app/providers.dart';
 
 class AppLayout extends ConsumerWidget {
   const new({super.key});
