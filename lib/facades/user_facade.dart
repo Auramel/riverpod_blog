@@ -1,9 +1,16 @@
+import 'package:event_bus/event_bus.dart';
+
+import 'package:river_blog/core/events/auth_event.dart';
 import 'package:river_blog/facades/device_storage_facade.dart';
 
 class UserFacade {
   final DeviceStorageFacade storage;
+  final EventBus eventBus;
 
-  const UserFacade(this.storage);
+  const UserFacade({
+    required this.storage,
+    required this.eventBus,
+  });
 
   bool get isLoggedIn => (
     (storage.getLogin()?.isNotEmpty ?? false)
@@ -16,10 +23,14 @@ class UserFacade {
   }) async {
     await storage.setLogin(login);
     await storage.setPassword(password);
+
+    eventBus.fire(UserLoggedInEvent());
   }
 
   Future<void> logout() async {
     await storage.setLogin(null);
     await storage.setPassword(null);
+
+    eventBus.fire(UserLoggedOutEvent());
   }
 }

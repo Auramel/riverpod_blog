@@ -13,7 +13,7 @@ class DeviceStorageFacade {
   String? getLogin() =>  prefs.getString(_Keys.login);
   Future<void> setLogin(String? value) async {
     if (value == null) {
-      prefs.remove(_Keys.login);
+      await prefs.remove(_Keys.login);
       return;
     }
 
@@ -23,7 +23,7 @@ class DeviceStorageFacade {
   String? getPassword() => prefs.getString(_Keys.password);
   Future<void> setPassword(String? value) async {
     if (value == null) {
-      prefs.remove(_Keys.password);
+      await prefs.remove(_Keys.password);
       return;
     }
 
