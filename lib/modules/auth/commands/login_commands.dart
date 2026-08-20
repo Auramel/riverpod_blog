@@ -55,7 +55,7 @@ class LoginCommands extends BaseCommands<LoginFormState> {
         login == 'admin'
         && password == '1234'
       ) {
-        await ref.watch(userFacadeProvider)
+        await ref.read(userFacadeProvider)
           .login(
             login: login,
             password: password

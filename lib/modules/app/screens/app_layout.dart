@@ -13,6 +13,8 @@ class AppLayout extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final GoRouter router = ref.watch(routerProvider);
 
+    ref.watch(appRouterProvider);
+
     return MaterialApp.router(
       routerConfig: router,
       builder: (BuildContext context, Widget? child) => LoadingHost(
