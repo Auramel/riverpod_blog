@@ -9,6 +9,7 @@ import 'package:river_blog/core/base/base_router.dart';
 import 'package:river_blog/core/configs/routes.dart';
 import 'package:river_blog/modules/app/events/user_events.dart';
 import 'package:river_blog/modules/auth/screens/login_screen.dart';
+import 'package:river_blog/modules/auth/screens/registration_screen.dart';
 
 class AuthRouter extends BaseRouter {
   final EventBus eventBus;
@@ -25,6 +26,12 @@ class AuthRouter extends BaseRouter {
       path: Routes.login,
       builder: (BuildContext context, GoRouterState state) {
         return const LoginScreen();
+      },
+    ),
+    GoRoute(
+      path: Routes.registration,
+      builder: (BuildContext context, GoRouterState state) {
+        return const RegistrationScreen();
       },
     ),
   ];

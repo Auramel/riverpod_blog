@@ -14,6 +14,7 @@ import 'package:river_blog/modules/app/providers.dart';
 import 'package:river_blog/modules/app/screens/app_layout.dart';
 import 'package:river_blog/modules/auth/providers.dart';
 import 'package:river_blog/modules/home/providers.dart';
+import 'package:river_blog/modules/users/providers.dart';
 import 'package:river_blog/shared/providers.dart';
 
 Future<void> bootstrap() async {
@@ -42,6 +43,7 @@ Future<void> bootstrap() async {
         routerModulesProvider.overrideWith((Ref ref) => <BaseRouter>[
           ref.watch(authRouterProvider),
           ref.watch(homeRouterProvider),
+          ref.watch(usersRouterProvider),
         ]),
       ],
       observers: [

@@ -18,12 +18,16 @@ dependencies:
   talker_riverpod_logger: ^5.1.20
   event_bus: ^2.0.1
   talker_flutter: ^5.1.20
+  path: ^1.9.1
+  sqflite: ^2.4.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
   import_sorter: ^4.6.0
+  db:
+    path: tools/db
 
 import_sorter:
   comments: false
@@ -32,3 +36,6 @@ flutter:
   uses-material-design: true
   assets:
      - assets/
+     - lib/database/migrations/
+     - lib/database/seeders/
+     - lib/repositories/users/sql/

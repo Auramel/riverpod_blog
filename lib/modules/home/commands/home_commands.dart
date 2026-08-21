@@ -20,6 +20,10 @@ class HomeCommands extends BaseCommands<EmptyState> {
       const LogoutBottomSheet(),
     );
 
+    if (!ref.mounted) {
+      return;
+    }
+
     if (!(result?.isConfirmed ?? false)) {
       return;
     }

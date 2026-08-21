@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
+import 'package:river_blog/core/configs/routes.dart';
 import 'package:river_blog/modules/auth/commands/login_commands.dart';
 import 'package:river_blog/modules/auth/providers.dart';
 import 'package:river_blog/modules/auth/states/login_form_state.dart';
@@ -25,9 +27,10 @@ class LoginScreen extends ConsumerWidget {
             spacing: 20,
             children: [
               TextField(
+                keyboardType: TextInputType.emailAddress,
                 textInputAction: TextInputAction.next,
                 decoration: InputDecoration(
-                  labelText: 'Логин',
+                  labelText: 'Email',
                   border: const UnderlineInputBorder(),
                   errorText: state.loginError,
                 ),
@@ -47,6 +50,10 @@ class LoginScreen extends ConsumerWidget {
               ElevatedButton(
                 onPressed: () => commands.onSubmit(),
                 child: const Text('Войти'),
+              ),
+              TextButton(
+                onPressed: () => context.replace(Routes.registration),
+                child: const Text('Зарегистрироваться'),
               ),
             ],
           ),

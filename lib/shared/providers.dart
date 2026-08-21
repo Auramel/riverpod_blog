@@ -1,6 +1,8 @@
 import 'package:event_bus/event_bus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:river_blog/database/sql_database.dart';
+import 'package:river_blog/database/sql_loader.dart';
 import 'package:river_blog/facades/device_storage_facade.dart';
 import 'package:river_blog/facades/user_facade.dart';
 
@@ -11,6 +13,16 @@ final Provider<EventBus> eventBusProvider = Provider<EventBus>(
 final Provider<DeviceStorageFacade> deviceStorageFacadeProvider = Provider<DeviceStorageFacade>(
   (Ref ref) => throw UnimplementedError(),
 );
+
+final Provider<SqlLoader> sqlLoaderProvider = Provider<SqlLoader>((Ref ref) => SqlLoader());
+
+final Provider<SqlDatabase> sqlDatabaseProvider = Provider<SqlDatabase>((Ref ref) {
+  final SqlDatabase database = SqlDatabase(ref.watch(sqlLoaderProvider));
+
+  ref.onDispose(database.close);
+
+  return database;
+});
 
 final Provider<UserFacade> userFacadeProvider = Provider<UserFacade>((Ref ref) => UserFacade(
   storage: ref.watch(deviceStorageFacadeProvider),

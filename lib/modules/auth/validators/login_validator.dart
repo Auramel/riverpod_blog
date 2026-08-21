@@ -10,9 +10,9 @@ class LoginValidator extends Validator {
   });
 
   String? validateLogin() {
-    if (login.isEmpty) {
+    if (!RegExp(r'^\S+@\S+\.\S+$').hasMatch(login.trim())) {
       addError();
-      return 'Логин не может быть пустым';
+      return 'Некорректный email';
     }
 
     return null;

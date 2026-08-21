@@ -1,17 +1,91 @@
-# river_blog
+# River Blog
 
-A new Flutter project.
+Пет-проект на Flutter для экспериментов с Riverpod, Event Bus, SQLite и offline-first архитектурой.
 
-## Getting Started
+## Консоль базы данных
 
-This project is a starting point for a Flutter application.
+Команды запускаются из корня проекта. Для их работы утилита `sqlite3` должна быть доступна в `PATH`.
 
-A few resources to get you started if this is your first Flutter project:
+### Миграции
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+Применить все новые миграции:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+dart run db:migrate
+```
+
+Посмотреть состояние миграций:
+
+```bash
+dart run db:status
+```
+
+Удалить базу, заново применить все миграции и запустить сидеры:
+
+```bash
+dart run db:fresh
+```
+
+Команда запросит подтверждение. Чтобы пропустить подтверждение:
+
+```bash
+dart run db:fresh --force
+```
+
+Создать новый SQL-файл миграции:
+
+```bash
+dart run db:make_migration create_posts_table
+```
+
+Файл будет создан в `lib/database/migrations/` с очередным числовым префиксом.
+
+### Сидеры
+
+Запустить все сидеры:
+
+```bash
+dart run db:seed
+```
+
+Создать новый SQL-файл сидера:
+
+```bash
+dart run db:make_seeder posts
+```
+
+Файл будет создан в `lib/database/seeders/`.
+
+### Путь к базе
+
+Показать путь к используемому файлу SQLite:
+
+```bash
+dart run db:path
+```
+
+Любой команде можно явно передать другой файл базы:
+
+```bash
+dart run db:migrate --database=/path/to/database.sqlite
+```
+
+Также путь можно задать через переменную окружения:
+
+```bash
+RIVER_BLOG_DATABASE_PATH=/path/to/database.sqlite dart run db:migrate
+```
+
+Приоритет выбора пути:
+
+1. Аргумент `--database`.
+2. Переменная окружения `RIVER_BLOG_DATABASE_PATH`.
+3. Стандартный путь базы приложения на macOS.
+
+### Справка
+
+Список всех команд можно вывести так:
+
+```bash
+dart run db:migrate --help
+```

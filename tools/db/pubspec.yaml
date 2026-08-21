@@ -1,0 +1,9 @@
+name: db
+description: River Blog database console.
+publish_to: 'none'
+
+environment:
+  sdk: ^3.13.0
+
+dependencies:
+  path: ^1.9.1

@@ -12,6 +12,8 @@ class UserFacade {
     required this.eventBus,
   });
 
+  String? get currentLogin => storage.getLogin();
+
   bool get isLoggedIn => (
     (storage.getLogin()?.isNotEmpty ?? false)
     && (storage.getPassword()?.isNotEmpty ?? false)
