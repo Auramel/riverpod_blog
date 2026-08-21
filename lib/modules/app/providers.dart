@@ -6,10 +6,12 @@ import 'package:river_blog/core/configs/routes.dart';
 import 'package:river_blog/facades/user_facade.dart';
 import 'package:river_blog/modules/app/commands/app_commands.dart';
 import 'package:river_blog/modules/app/routers/app_router.dart';
+import 'package:river_blog/modules/app/services/bottom_sheets.dart';
 import 'package:river_blog/modules/app/states/app_state.dart';
 import 'package:river_blog/shared/providers.dart';
 
 final NotifierProvider<AppCommands, AppState> appCommandsProvider = NotifierProvider<AppCommands, AppState>(AppCommands.new);
+final Provider<BottomSheets> bottomSheetsProvider = Provider<BottomSheets>((Ref ref) => BottomSheets());
 final Provider<List<BaseRouter>> routerModulesProvider = Provider<List<BaseRouter>>(
   (Ref ref) => throw UnimplementedError('routerModulesProvider must be overridden'),
 );

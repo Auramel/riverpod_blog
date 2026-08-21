@@ -38,18 +38,10 @@ class LoginCommands extends BaseCommands<LoginFormState> {
 
     await ref.read(operationRunnerProvider)
       .run((Function(String) describe) async {
-        if (!ref.mounted) {
-          return;
-        }
-
         state = state.copyWithoutErrors();
 
         describe('Отправляю запрос на сервер');
-        await Future<void>.delayed(const Duration(seconds: 3));
-
-        if (!ref.mounted) {
-          return;
-        }
+        await Future<void>.delayed(const Duration(seconds: 1));
 
         describe('Обрабатываю полученные данные');
 
