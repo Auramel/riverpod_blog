@@ -7,9 +7,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:river_blog/core/base/base_events.dart';
+import 'package:river_blog/core/base/base_router.dart';
 import 'package:river_blog/facades/device_storage_facade.dart';
 import 'package:river_blog/facades/logger_facade.dart';
+import 'package:river_blog/modules/app/providers.dart';
 import 'package:river_blog/modules/app/screens/app_layout.dart';
+import 'package:river_blog/modules/auth/providers.dart';
+import 'package:river_blog/modules/home/providers.dart';
 import 'package:river_blog/shared/providers.dart';
 
 Future<void> bootstrap() async {
@@ -35,6 +39,10 @@ Future<void> bootstrap() async {
 
           return eventBus;
         }),
+        routerModulesProvider.overrideWith((Ref ref) => <BaseRouter>[
+          ref.watch(authRouterProvider),
+          ref.watch(homeRouterProvider),
+        ]),
       ],
       observers: [
         loggerFacade.riverpodObserver(),

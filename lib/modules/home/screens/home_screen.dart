@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:river_blog/core/base/empty_state.dart';
 import 'package:river_blog/modules/home/commands/home_commands.dart';
 import 'package:river_blog/modules/home/providers.dart';
 
@@ -11,6 +12,7 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final HomeCommands commands = ref.read(homeCommandsProvider.notifier);
+    final EmptyState state = ref.watch(homeCommandsProvider);
 
     return Scaffold(
       appBar: AppBar(
