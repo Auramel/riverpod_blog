@@ -13,7 +13,7 @@ import 'package:river_blog/shared/providers.dart';
 final NotifierProvider<AppCommands, AppState> appCommandsProvider = NotifierProvider<AppCommands, AppState>(AppCommands.new);
 final Provider<BottomSheets> bottomSheetsProvider = Provider<BottomSheets>((Ref ref) => BottomSheets());
 final Provider<List<BaseRouter>> routerModulesProvider = Provider<List<BaseRouter>>(
-  (Ref ref) => throw UnimplementedError('routerModulesProvider must be overridden'),
+  (Ref ref) => throw UnimplementedError(),
 );
 
 final Provider<GoRouter> routerProvider = Provider<GoRouter>((Ref ref) {
